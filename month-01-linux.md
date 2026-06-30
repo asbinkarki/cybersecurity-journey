@@ -46,3 +46,30 @@ SOC context
 
 Tomorrow
 Day 3 — Reading files properly (cat, less, head, tail, tail -f)
+## Day 3 — Reading Files
+
+ What I did
+- Learned the 4 main file-reading commands: cat, less, head, tail
+- Practiced with a real system file (/etc/os-release)
+- Learned about file permissions blocking log access (sudo)
+- Created a test file (numbers.txt, 1-100) to safely practice without empty logs
+- Compared cat vs less vs head vs tail directly
+
+Commands practiced
+cat, sudo cat, wc -l, less, head, tail, seq
+
+What I learned
+- cat = prints whole file instantly — good for small files, floods screen on big ones
+- less = scrollable view, press q to quit — better for large files
+- head = shows first 10 lines by default
+- tail = shows last 10 lines by default
+- sudo needed to read root-owned files like system logs ("Permission denied" without it)
+- wc -l counts lines in a file — useful to check if a log is empty before reading it
+- Some Kali logs were empty (boot.log, dpkg.log) — likely rotated into .gz files
+
+Still to do
+- tail -f (live log watching) — continuing tomorrow
+
+Tomorrow
+Finish Day 3: tail -f live log watching
+Then Day 4: grep — searching inside files
