@@ -73,3 +73,36 @@ Still to do
 Tomorrow
 Finish Day 3: tail -f live log watching
 Then Day 4: grep — searching inside files
+## Day 4 — July 3 (Continuation of Day 3)
+
+ What I did
+- Finished tail -f concept from Day 3
+- Learned about binary files vs readable log files
+- Learned where login attempts are actually recorded
+- Understood how real SOC analysts monitor logs live
+- Learned what SIEM is and why it exists
+
+ Commands practiced
+sudo tail /var/log/installer/syslog
+sudo tail -f /var/log/installer/syslog
+sudo find /var/log -type f -size +0c 2>/dev/null
+last -f /var/log/btmp.1
+
+ What I learned
+- tail -f = live log watching, like CCTV for log files
+- auth.log = where SSH login attempts are recorded
+- apache2/access.log = where website login attempts are recorded
+- Same IP + hundreds of failed logins per minute = brute force attack
+- Binary files look like garbage text — need special commands to read
+- SIEM = collects logs from ALL servers into one place, fires alerts automatically
+- SOC analyst flow: SIEM alert → investigate → grep/tail logs → find IP → block it
+
+SOC context
+- In real companies nobody watches log files manually all day
+- SIEM tools like Splunk do the watching and fire alerts
+- tail and grep are investigation tools used AFTER an alert fires
+- Will learn Splunk properly in Month 3
+
+Tomorrow
+Day 5 — grep (searching inside log files)
+Learning style: Case first → Why → Practice in Kali → Understand output
