@@ -106,3 +106,34 @@ SOC context
 Tomorrow
 Day 5 — grep (searching inside log files)
 Learning style: Case first → Why → Practice in Kali → Understand output
+
+## Day 5 — July 5
+
+ What I did
+- Learned grep — most important SOC log analysis command
+- Practiced 4 different grep flags with real examples
+- Searched through actual installer logs on Kali
+
+ Commands practiced
+grep "word" file
+grep -c "word" file
+grep -n "word" file
+grep -i "word" file
+grep -r "word" /var/log/installer/
+
+ What I learned
+- grep = Ctrl+F but for millions of lines instantly
+- -c = count only, no lines shown
+- -n = show line number of each match
+- -i = ignore uppercase/lowercase (important in SOC)
+- -r = search ALL files in a folder at once
+- Different systems write Failed/FAILED/failed differently — always use -i
+
+SOC context
+- SIEM fires alert → you grep the logs for suspicious IP or keyword
+- grep -r searches all log files at once — saves huge time during investigation
+- grep -c gives instant count — 2847 failed logins = definitely brute force attack
+
+ Tomorrow
+- Finish grep: pipes with grep (most powerful part)
+- Then Day 6: find command
