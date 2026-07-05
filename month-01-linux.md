@@ -137,3 +137,37 @@ SOC context
  Tomorrow
 - Finish grep: pipes with grep (most powerful part)
 - Then Day 6: find command
+## Day 6 — July 5
+
+ What I did
+- Completed grep pipes — most powerful part of grep
+- Built the full SOC attacker detection command from scratch
+- Learned how to chain commands together with pipes
+- Created a fake auth.log and practiced real SOC investigation
+
+ Commands practiced
+grep "Failed password" auth.log | wc -l
+grep "1" numbers.txt | sort
+grep "1" numbers.txt | sort | uniq -c
+grep "1" numbers.txt | sort | uniq -c | sort -rn
+grep "Failed password" auth.log | awk '{print $11}' | sort | uniq -c | sort -rn | head -10
+
+ What I learned
+- Pipe | sends output of one command into the next
+- wc -l = counts lines of any input
+- sort = organizes output in order
+- uniq -c = removes duplicates and counts occurrences
+- sort -rn = reverse numerical order, highest first
+- head -10 = show only top 10 results
+- awk '{print $11}' = extracts 11th word from each line (IP address)
+- grep -c counts within grep only, wc -l counts anything piped into it
+
+ SOC context
+- Full attacker detection command:
+  grep "Failed password" auth.log | awk '{print $11}' | sort | uniq -c | sort -rn | head -10
+- Output shows which IP failed most times = attacker
+- This command finds attackers in seconds from millions of log lines
+- Used by SOC analysts daily for brute force detection
+
+ Tomorrow
+Day 7 — Week 1 review and self test (no notes!)
