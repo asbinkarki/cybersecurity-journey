@@ -171,3 +171,43 @@ grep "Failed password" auth.log | awk '{print $11}' | sort | uniq -c | sort -rn 
 
  Tomorrow
 Day 7 — Week 1 review and self test (no notes!)
+Based on what you shared, here's a GitHub update that reflects your actual progress today.
+
+### Day 7 — July 6
+
+ What I did
+
+* Learned how Linux pipelines (`|`) work by connecting multiple commands together.
+* Built a complete SOC log analysis pipeline to identify attackers from SSH login logs.
+* Practiced understanding the logic behind each command instead of just memorizing the syntax.
+
+ Commands practiced
+
+```bash
+grep -i "Failed password" auth.log
+grep -i "Failed password" auth.log | awk '{print $6}'
+grep -i "Failed password" auth.log | awk '{print $6}' | sort
+grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c
+grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c | sort -rn | head -10
+```
+
+ What I learned
+
+* `|` (pipe) passes the output of one command to the next.
+* `awk '{print $6}'` extracts the source IP address from log entries.
+* `sort` groups identical IP addresses together.
+* `uniq -c` counts how many times each unique IP appears.
+* `sort -rn` displays the highest counts first.
+* `head -10` shows only the top results.
+
+ SOC context
+
+* Extracted attacker IP addresses from authentication logs.
+* Counted failed login attempts for each IP.
+* Ranked attackers by the number of failed login attempts to quickly identify the most suspicious sources.
+* Learned that understanding the logic behind each step is more important than simply memorizing commands.
+
+ Tomorrow
+
+* Practice building Linux pipelines without help.
+* Start learning the `find` command for searching files and directories efficiently.
