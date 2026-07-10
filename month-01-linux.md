@@ -211,3 +211,27 @@ grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c | sort -r
 
 * Practice building Linux pipelines without help.
 * Start learning the `find` command for searching files and directories efficiently.
+
+## Day 8 — July 10, 2026
+
+ Topic: Log Analysis with grep & awk (Linux CLI basics for SOC)
+
+**What I did:**
+- Practiced parsing a sample `auth.log` file for failed SSH login attempts
+- Used `grep -i "Failed password" auth.log` to filter matching log lines (case-insensitive)
+- Debugged command mistakes myself: typo'd command (`greps`), wrong bracket in awk (`]` instead of `}`), missing pipe before `awk`
+- Learned how `awk '{print $6}'` extracts the 6th whitespace-separated field (the source IP) from each line
+- Chained `grep | awk` to extract just the offending IPs from failed login attempts
+- Started building toward `sort | uniq -c` to count failed attempts per IP (worst-offender triage)
+
+Commands practiced:
+```bash
+grep -i "Failed password" auth.log
+grep -i "Failed password" auth.log | awk '{print $6}'
+grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c
+```
+
+Key takeaway:
+`awk` doesn't "know" what an IP is — it just prints whatever column number you tell it to (`$6` = 6th word). Understanding column position in log lines is the real skill, not memorizing the command.
+
+Next up: Sort `uniq -c` output by count (descending) to surface the top attacking IP first — closer to real SOC triage workflow.
