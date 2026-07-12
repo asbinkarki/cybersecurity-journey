@@ -230,6 +230,43 @@ grep -i "Failed password" auth.log
 grep -i "Failed password" auth.log | awk '{print $6}'
 grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c
 ```
+## Day 9 — July 12
+
+ What I did
+- Completed the full SOC attacker detection pipeline
+- Built it step by step myself this time
+- Third time doing this pipeline — understanding improving each session
+
+ Full pipeline command
+grep -i "Failed password" auth.log | awk '{print $6}' | sort | uniq -c | sort -rn | head -10
+
+ What each step does
+grep -i  → find all failed login lines (ignore case)
+awk '{print $6}' → extract only the IP address (6th word)
+sort     → group same IPs together
+uniq -c  → count each unique IP
+sort -rn → highest count first
+head -10 → show top 10 only
+
+ What I learned
+- awk extracts specific columns, $6 means 6th word in each line
+- sort must come before uniq -c otherwise counting won't work
+- -i flag in grep catches both Failed and failed
+- Pipeline output: 4 192.168.1.105 = attacker, block immediately
+
+ SOC context
+- This command finds top attacker in seconds from millions of log lines
+- 192.168.1.105 attacked 4 times = block this IP
+- Real auth.log would have thousands of entries, same command works
+
+ Week 1 Complete ✅
+- Navigation and file operations
+- Reading files (cat, less, head, tail, tail -f)
+- grep and pipes
+- Built first SOC investigation command
+
+ Tomorrow
+Week 2 — Permissions, Users and Processes
 
 Key takeaway:
 `awk` doesn't "know" what an IP is — it just prints whatever column number you tell it to (`$6` = 6th word). Understanding column position in log lines is the real skill, not memorizing the command.
