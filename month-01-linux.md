@@ -272,3 +272,39 @@ Key takeaway:
 `awk` doesn't "know" what an IP is — it just prints whatever column number you tell it to (`$6` = 6th word). Understanding column position in log lines is the real skill, not memorizing the command.
 
 Next up: Sort `uniq -c` output by count (descending) to surface the top attacking IP first — closer to real SOC triage workflow.
+
+### Week 2 Started
+## Day 8 — July 13
+
+ What I did
+- Learned Linux file permissions (Week 2 begins)
+- Read permissions from real files on my Kali system
+- Changed permissions using chmod
+- Learned SUID and why it is dangerous
+- Found all SUID files on my system
+
+Commands practiced
+ls -la
+chmod +x scan.sh
+chmod 755 file
+chmod 644 file
+find / -perm -4000 2>/dev/null
+
+ What I learned
+- Permission format: -rwxrwxrwx (type, owner, group, others)
+- r=4, w=2, x=1 — add them for chmod numbers
+- 7=rwx, 6=rw-, 5=r-x, 4=r--, 0=---
+- chmod 644 = owner rw, group r, others r (most common for files)
+- chmod 755 = owner rwx, group rx, others rx (common for scripts)
+- SUID (s) = file runs as root regardless of who executes it
+- find / -perm -4000 = finds all SUID files on system
+
+SOC context
+- Attacker drops malicious script → chmod +x → executes it
+- SUID files in /tmp or /home = red flag, not normal system files
+- Always check SUID files during incident response
+- Compare against known baseline to spot new/suspicious ones
+- archive-key.asc owned by root in kali home folder = suspicious in real scenario
+
+ Tomorrow
+Day 9 — Users and Groups
