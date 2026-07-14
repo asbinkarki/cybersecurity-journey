@@ -274,7 +274,7 @@ Key takeaway:
 Next up: Sort `uniq -c` output by count (descending) to surface the top attacking IP first — closer to real SOC triage workflow.
 
 ### Week 2 Started
-## Day 8 — July 13
+## Day 1 — July 13
 
  What I did
 - Learned Linux file permissions (Week 2 begins)
@@ -308,3 +308,39 @@ SOC context
 
  Tomorrow
 Day 9 — Users and Groups
+## Week 2 Day 2 — July 14
+
+### What I did
+- Learned Linux users and groups
+- Read /etc/passwd and understood each field
+- Created, switched to, and deleted a test user
+- Understood how attackers create backdoor accounts
+
+### Commands practiced
+cat /etc/passwd
+grep "kali" /etc/passwd
+whoami
+id
+sudo adduser testuser
+su - testuser
+sudo userdel testuser
+grep "testuser" /etc/passwd
+
+### What I learned
+- /etc/passwd = stores all users (55 accounts on my Kali)
+- /etc/shadow = stores encrypted passwords
+- UID 1000+ = real human accounts, below 1000 = system accounts
+- id command shows all groups you belong to
+- sudo group = can run root commands
+- testuser could not run sudo — not in sudoers group
+- No output from grep after deletion = user successfully removed
+
+### SOC context
+- Attacker creates backdoor user after breaching server
+- Check cat /etc/passwd | tail -10 for recently added accounts
+- Unknown user with UID 1000+ = red flag
+- Attacker tries to add backdoor user to sudo group = full root access
+- Always check id username to see if suspicious user has sudo
+
+### Tomorrow
+Day 10 — sudo and Privilege Escalation concepts
