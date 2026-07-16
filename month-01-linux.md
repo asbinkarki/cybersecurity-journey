@@ -344,3 +344,45 @@ grep "testuser" /etc/passwd
 
 ### Tomorrow
 Day 10 — sudo and Privilege Escalation concepts
+## Day 10 — July 16 (Week 2, Day 3)
+
+### What I did
+- Learned sudo and privilege escalation concepts
+- Checked my own sudo permissions
+- Became root using sudo su
+- Learned about GTFOBins
+- Understood how attackers escalate privileges
+
+### Commands practiced
+sudo -l
+sudo su
+whoami
+sudo journalctl | grep "sudo"
+sudo journalctl | grep "sudo" | tail -10
+
+### What I learned
+- sudo = run a command as root (like asking manager to open door)
+- sudo -l = shows what commands you can run as root
+- (ALL : ALL) ALL = full root access = dangerous if attacker gets this
+- sudo su = become root completely
+- GTFOBins = website showing how common tools are abused for privesc
+- Even limited sudo like /usr/bin/less can give root access
+- All sudo usage is logged in journalctl
+
+### SOC context
+- Attacker first command after getting in = sudo -l
+- If they see (ALL : ALL) ALL = game over, full root access
+- Check sudo logs: sudo journalctl | grep "sudo"
+- Suspicious user found → run id username → check for sudo group
+- sudo in unknown user groups = escalate incident immediately
+
+### Incident response flow for suspicious user
+1. cat /etc/passwd | tail -10    → spot new accounts
+2. id username                   → check their groups
+3. sudo in groups?               → escalate immediately
+
+### Resources
+- GTFOBins: gtfobins.github.io → bookmark this!
+
+### Tomorrow
+Day 11 — Processes (ps, kill, htop)
