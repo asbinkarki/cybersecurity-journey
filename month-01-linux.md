@@ -386,3 +386,13 @@ sudo journalctl | grep "sudo" | tail -10
 
 ### Tomorrow
 Day 11 — Processes (ps, kill, htop)
+
+###Day 11 week 2 Day 4 
+
+Day 11 complete! Summary:
+
+ps aux              → list all running processes
+ps aux | grep name  → find specific process
+kill PID            → stop a process by ID
+top/htop            → visual process monitor
+ps aux | grep "/tmp" → hunt for malware in /tmp
