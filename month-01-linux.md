@@ -396,3 +396,14 @@ ps aux | grep name  → find specific process
 kill PID            → stop a process by ID
 top/htop            → visual process monitor
 ps aux | grep "/tmp" → hunt for malware in /tmp
+
+Day 12 summary — July 27
+
+systemctl list-units --type=service --state=running  → currently running services
+systemctl status ssh                                  → check specific service
+systemctl start ssh                                   → start a service
+systemctl stop ssh                                    → stop a service
+systemctl enable ssh                                  → start on boot
+systemctl disable ssh                                 → don't start on boot
+systemctl list-unit-files --type=service | grep enabled → all auto-start services
+ls /etc/systemd/system/                               → check for malicious service files
